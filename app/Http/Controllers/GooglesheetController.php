@@ -35,8 +35,9 @@ public function getClient()
         // Get the API client and construct the service object.
        $client =$this->getClient();
         $service =new Sheets($client);
-
+        // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     $spreadsheetId = '1uRBLCicSBiLRqAcAZdhwpiNahSEXvwbYQ4wddqU5rYU';
+        // sheet name and range
     $range = 'Sheet2!A:Z';
     $response = $service->spreadsheets_values->get($spreadsheetId, $range);
     $values = $response->getValues();
@@ -77,9 +78,11 @@ public function getClient()
         $client =$this->getClient();
         $service =new Sheets($client);
         //  dd($service);
+        // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
         $spreadsheetId = '1uRBLCicSBiLRqAcAZdhwpiNahSEXvwbYQ4wddqU5rYU';
+        // sheet name and range
         $range = 'Sheet2!A:Z';
-       
+
         $values = [
            [  $req->first_name,
                $req->last_name,
@@ -99,7 +102,6 @@ public function getClient()
 
         $result = $service->spreadsheets_values->append($spreadsheetId, $range, $body,$params);
         //   dd($result->updates->updatedRows);
-        // $data=$result->getUpdates()->getUpdatedCells();
         //  dd($data);
         if(isset($result->updates->updatedRows)){
         foreach ($values as $row) {
